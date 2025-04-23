@@ -1,0 +1,9 @@
+.categories-container {
+    height: calc(100vh - 4.5rem);
+    background-color: #2C3335;
+}
+
+.categories-border {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
