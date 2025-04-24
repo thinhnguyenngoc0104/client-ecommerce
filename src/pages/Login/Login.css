@@ -1,0 +1,8 @@
+.login-background {
+    height: 100vh;
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+            url("/src/assets/general-wall.jpg");
+    background-size: cover;
+    background-position: center;
+}
