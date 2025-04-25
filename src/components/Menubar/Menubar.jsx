@@ -1,8 +1,19 @@
 import './Menubar.css'
 import {assets} from "../../assets/assets.js";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useContext} from "react";
+import {AppContext} from "../../context/AppContext.jsx";
 
 const Menubar = () => {
+    const navigate = useNavigate();
+    const {setAuthData} = useContext(AppContext);
+    const logout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        setAuthData(null, null);
+        navigate("/login");
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-2">
             <a className="navbar-brand" href="#">
@@ -30,10 +41,18 @@ const Menubar = () => {
                         <Link className="nav-link" to="/users">Manage Users</Link>
                     </li>
                 </ul>
-                <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-light" type="submit">Search</button>
-                </form>
+                <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdown-container"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src={assets.userProfile} alt="Logo" height={32} width={32}/>
+                    </button>
+                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-container">
+                        <li><a className="dropdown-item" href="#!">Settings</a></li>
+                        <li><a className="dropdown-item" href="#!">Activity Logs</a></li>
+                        <li><hr className="dropdown-divider"/></li>
+                        <li><a className="dropdown-item" href="#!" onClick={logout}>Log out</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     )

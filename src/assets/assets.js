@@ -1,7 +1,8 @@
-import logo from './logo.png';
-import upload from './upload.jpg';
+import logo from './ecom-logo.png';
+import upload from './upload-logo.png';
 import loginBg from './general-wall.jpg';
+import userProfile from './user-pf.png';
 
 export const assets = {
-    logo, upload, loginBg
+    logo, upload, loginBg, userProfile
 }

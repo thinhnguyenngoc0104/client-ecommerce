@@ -9,6 +9,27 @@ export const AppContextProvider = (props) => {
     const [categories, setCategories] = useState([]);
     const [items, setItems] = useState([]);
     const [auth, setAuth] = useState({token: null, role: null});
+    const [cartItems, setCartItems] = useState([]);
+
+    const addToCart = (item) => {
+        const existingItem = cartItems.find(cartItem => cartItem.itemId === item.itemId)
+        if (existingItem) {
+            setCartItems(cartItems.map((cartItem) => cartItem.itemId === item.itemId ? {
+                ...cartItem,
+                quantity: cartItem.quantity + 1
+            } : cartItem));
+        } else {
+            setCartItems([...cartItems, {...item, quantity: 1}]);
+        }
+    }
+
+    const removeFromCart = (item) => {
+        setCartItems(cartItems.filter(cartItem => cartItem.itemId !== item.itemId));
+    }
+
+    const updateQuantity = (itemId, newQuantity) => {
+        setCartItems(cartItems.map((cartItem) => cartItem.itemId === itemId ? {...cartItem, quantity: newQuantity} : cartItem));
+    }
 
     useEffect(() => {
         async function loadData() {
@@ -17,6 +38,7 @@ export const AppContextProvider = (props) => {
             setCategories(response.data);
             setItems(itemResponse.data);
         }
+
         loadData();
     }, []);
 
@@ -31,6 +53,10 @@ export const AppContextProvider = (props) => {
         setItems,
         auth,
         setAuthData,
+        addToCart,
+        cartItems,
+        removeFromCart,
+        updateQuantity,
     }
 
     return <AppContext.Provider value={contextValue}>
