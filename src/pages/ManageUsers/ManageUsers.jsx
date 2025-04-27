@@ -35,7 +35,7 @@ const ManageUsers = () => {
                 </div>
                 <div className="col-md-4 p-4">
                     <div className="users-border h-100 p-4 flex-column">
-                        {loading && (<UserList users={users} setUsers={setUsers} />)}
+                        {!loading && (<UserList users={users} setUsers={setUsers} />)}
                     </div>
                 </div>
 

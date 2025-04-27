@@ -10,6 +10,7 @@ const UserList = ({users, setUsers}) => {
         user.name.toLowerCase().includes(search.toLowerCase())
     )
 
+
     const deleteByUserId = async (userId) => {
         try {
             const response = await deleteUser(userId);

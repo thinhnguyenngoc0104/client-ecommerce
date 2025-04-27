@@ -29,7 +29,6 @@ const Login = () => {
                 toast.success("Login successful");
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("role", response.data.role);
-                setAuthData(response.data.token, response.data.role);
                 navigate("/dashboard");
             }
         } catch (error) {
